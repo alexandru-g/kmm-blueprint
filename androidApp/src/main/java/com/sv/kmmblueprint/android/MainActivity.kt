@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import com.sv.kmmblueprint.Greeting
 import com.sv.kmmblueprint.android.ui.MainScreen
+import com.sv.kmmblueprint.android.ui.quiz.QuizScreen
 
 fun greet(): String {
     return Greeting().greeting()
@@ -15,7 +16,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
-            MainScreen()
+            QuizScreen()
         }
     }
 }
