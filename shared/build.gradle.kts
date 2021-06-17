@@ -4,6 +4,7 @@ plugins {
     kotlin("multiplatform")
     id("com.android.library")
     kotlin("plugin.serialization") version "1.4.30"
+    id("com.squareup.sqldelight")
 }
 
 android {
@@ -48,6 +49,9 @@ kotlin {
                 implementation("io.ktor:ktor-client-logging:$ktorVersion")
 
                 implementation("ch.qos.logback:logback-classic:1.2.3")
+
+                implementation("com.squareup.sqldelight:runtime:1.5.0")
+                implementation("com.squareup.sqldelight:coroutines-extensions:1.4.4")
             }
         }
         val commonTest by getting {
@@ -59,6 +63,7 @@ kotlin {
         val androidMain by getting {
             dependencies {
                 implementation("io.ktor:ktor-client-cio:$ktorVersion")
+                implementation("com.squareup.sqldelight:android-driver:1.4.4")
             }
         }
         val androidTest by getting {
@@ -70,9 +75,16 @@ kotlin {
         val iosMain by getting {
             dependencies {
                 implementation("io.ktor:ktor-client-ios:$ktorVersion")
+                implementation("com.squareup.sqldelight:native-driver:1.4.4")
             }
         }
         val iosTest by getting
+    }
+}
+
+sqldelight {
+    database("Database") {
+        packageName = "com.sv.kmmblueprint.db"
     }
 }
 

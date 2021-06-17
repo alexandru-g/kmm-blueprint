@@ -1,0 +1,26 @@
+CREATE TABLE question (
+  question TEXT PRIMARY KEY NOT NULL,
+  category TEXT NOT NULL,
+  type TEXT NOT NULL,
+  difficulty TEXT NOT NULL,
+  correctAnswer TEXT NOT NULL
+);
+
+CREATE INDEX question_difficulty ON question(difficulty);
+
+insert:
+INSERT OR REPLACE INTO question (question, category, type, difficulty, correctAnswer)
+VALUES ?;
+
+update:
+UPDATE question SET category = ?, type = ?, difficulty = ?, correctAnswer = ?
+WHERE question = ?;
+
+getQuestions:
+SELECT * FROM question;
+
+getQuestionByDifficulty:
+SELECT * FROM question WHERE difficulty LIKE ?;
+
+getQuestion:
+SELECT * FROM question WHERE question LIKE ? LIMIT 1;
